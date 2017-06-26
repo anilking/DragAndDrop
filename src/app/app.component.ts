@@ -14,6 +14,7 @@ export class AppComponent {
   public imagesUrl: any = [];
 
   constructor() {
+      this.imagesUrl = JSON.parse(localStorage.getItem('image_urls')) || [];
   }
 
   ngOnInit() {
@@ -37,6 +38,7 @@ export class AppComponent {
     reader.onload = () => {
       var dataURL = reader.result;
       this.imagesUrl.push(dataURL);
+      localStorage.setItem('image_urls', JSON.stringify(this.imagesUrl));
     };
     reader.readAsDataURL(file);
   }
